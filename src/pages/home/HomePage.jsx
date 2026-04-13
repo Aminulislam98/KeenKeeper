@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import BannerFriendsDetails from "../../utility/BannerFriendsDetails";
 import { FaPlus } from "react-icons/fa6";
 import ProfileCard from "../../utility/ProfileCard";
+import useProfilesData from "../../Hooks/useProfilesData";
 // const profilePromise = fetch("/profileData.json").then((res) => res.json());
 const HomePage = () => {
   // const profilesData = use(profilePromise);
@@ -28,20 +29,7 @@ const HomePage = () => {
       title: "Need Attention",
     },
   ];
-
-  const [profilesData, setProfilesData] = useState([]);
-  const [loader, setLoader] = useState(false);
-
-  useEffect(() => {
-    const profiles = async () => {
-      setLoader(true);
-      const promise = await fetch("/profileData.json");
-      const response = await promise.json();
-      setProfilesData(response);
-      setLoader(false);
-    };
-    profiles();
-  }, []);
+  const { profilesData, loader } = useProfilesData();
 
   return (
     <section className="w-full bg-[#F8FAFC] py-20 px-4">

@@ -1,8 +1,9 @@
 import React from "react";
 import ProfileTags from "./ProfileTags";
+import { NavLink } from "react-router";
 
 const ProfileCard = ({ profile }) => {
-  const { name, picture, days_since_contact, status, tags } = profile;
+  const { id, name, picture, days_since_contact, status, tags } = profile;
   // text and bg style for status property
   const statusStyles = {
     "on-track": "bg-green-900 text-green-50",
@@ -10,7 +11,10 @@ const ProfileCard = ({ profile }) => {
     overdue: "bg-red-900 text-red-50",
   };
   return (
-    <div className="w-full bg-white border border-slate-200 rounded md:rounded-2xl overflow-hidden cursor-pointer md:hover:scale-105 transition-transform duration-200">
+    <NavLink
+      to={`/profile/${id}`}
+      className="w-full bg-white border border-slate-200 rounded md:rounded-2xl overflow-hidden cursor-pointer md:hover:scale-105 transition-transform duration-200"
+    >
       {/* top section — tinted */}
       <div className="bg-slate-50 flex flex-col items-center pt-7 pb-0 px-5">
         <div className="w-18 h-18 rounded-full overflow-hidden border-[3px] border-white shadow-[0_0_0_1px_#E2E8F0] mb-3">
@@ -41,7 +45,7 @@ const ProfileCard = ({ profile }) => {
           {status}
         </p>
       </div>
-    </div>
+    </NavLink>
   );
 };
 
