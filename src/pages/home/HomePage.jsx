@@ -1,11 +1,11 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import BannerFriendsDetails from "../../utility/BannerFriendsDetails";
 import { FaPlus } from "react-icons/fa6";
 import ProfileCard from "../../utility/ProfileCard";
-const profilePromise = fetch("/profileData.json").then((res) => res.json());
+// const profilePromise = fetch("/profileData.json").then((res) => res.json());
 const HomePage = () => {
-  const profilesData = use(profilePromise);
-  console.log(profilesData);
+  // const profilesData = use(profilePromise);
+  // console.log(profilesData);
   const friendsDetails = [
     {
       id: 1,
@@ -28,6 +28,20 @@ const HomePage = () => {
       title: "Need Attention",
     },
   ];
+
+  const [profilesData, setProfilesData] = useState([]);
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    const profiles = async () => {
+      setLoader(true);
+      const promise = await fetch("/profileData.json");
+      const response = await promise.json();
+      setProfilesData(response);
+      setLoader(false);
+    };
+    profiles();
+  }, []);
 
   return (
     <section className="w-full bg-[#F8FAFC] py-20 px-4">
@@ -65,11 +79,17 @@ const HomePage = () => {
         {/* This is bottom level of banner */}
         <div className="flex flex-col gap-4">
           <h2 className="font-semibold text-2xl">Your Friends</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4  gap-2 md:gap-4">
-            {profilesData.map((profile) => (
-              <ProfileCard key={profile.id} profile={profile}></ProfileCard>
-            ))}
-          </div>
+          {loader ? (
+            <div className="max-w-full w-full flex justify-center">
+              <span className="loading loading-spinner loading-xl"></span>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4  gap-2 md:gap-4">
+              {profilesData.map((profile) => (
+                <ProfileCard key={profile.id} profile={profile}></ProfileCard>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
