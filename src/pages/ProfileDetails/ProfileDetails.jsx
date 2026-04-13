@@ -6,11 +6,12 @@ const ProfileDetails = () => {
   const { id } = useParams();
   const { profilesData, loader } = useProfilesData();
   console.log(loader, profilesData);
-  //   const matchedProfile = profilesData?.find(
-  //     (profile) => String(profile.id) === id,
-  //   );
-  //   console.log(matchedProfile);
-  //   const { name, picture, days_since_contact, status, tags } = matchedProfile;
+  const matchedProfile = profilesData?.find(
+    (profile) => String(profile.id) === id,
+  );
+
+  const { name, picture, days_since_contact, status, tags, bio } =
+    matchedProfile;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,28 +30,32 @@ const ProfileDetails = () => {
               {/* Profile card */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col items-center gap-2.5 text-center">
                 <img
-                  //   src={matchedProfile.picture}
-                  //   alt={matchedProfile.name}
+                  src={picture}
+                  alt={name}
                   className="w-20 h-20 rounded-full object-cover border-[3px] border-white shadow-[0_0_0_1px_#E2E8F0]"
                 />
-                <h1 className="text-lg font-bold text-slate-900">
-                  {matchedProfile.name}
-                </h1>
+                <h1 className="text-lg font-bold text-slate-900">{name}</h1>
                 <span className="text-[11px] font-bold px-3 py-1 rounded-full">
-                  {/* {matchedProfile.status} */}
+                  {status}
                 </span>
                 <div className="flex flex-wrap justify-center gap-1.5">
-                  {/* {matchedProfile.tags} */}
+                  {tags}
                 </div>
-                <p className="text-sm text-slate-500 italic"></p>
+                <p className="text-sm text-slate-500 italic">{bio}</p>
                 <p className="text-xs text-slate-400"></p>
               </div>
 
               {/* Action buttons */}
               <div className="flex flex-col gap-2.5">
-                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors"></button>
-                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors"></button>
-                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-red-500 hover:bg-red-50 transition-colors"></button>
+                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  Snooze 2 weeks
+                </button>
+                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  Archive
+                </button>
+                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-red-500 hover:bg-red-50 transition-colors">
+                  Delete
+                </button>
               </div>
             </div>
 
@@ -59,12 +64,20 @@ const ProfileDetails = () => {
               {/* Stats row */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col items-center justify-center gap-1">
-                  <span className="text-4xl font-bold text-teal-900"></span>
-                  <span className="text-sm text-slate-400 font-medium"></span>
+                  <span className="text-4xl font-bold text-teal-900">
+                    {days_since_contact}
+                  </span>
+                  <span className="text-sm text-slate-400 font-medium">
+                    Days Since Contact
+                  </span>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col items-center justify-center gap-1">
-                  <span className="text-4xl font-bold text-teal-900"></span>
-                  <span className="text-sm text-slate-400 font-medium"></span>
+                  <span className="text-4xl font-bold text-teal-900">
+                    {/* {goal} */}
+                  </span>
+                  <span className="text-sm text-slate-400 font-medium">
+                    Goal Days
+                  </span>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col items-center justify-center gap-1">
                   <span className="text-2xl font-bold text-teal-900"></span>
