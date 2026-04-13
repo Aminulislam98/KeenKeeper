@@ -10,23 +10,33 @@ const ProfileCard = ({ profile }) => {
     overdue: "bg-red-900 text-red-50",
   };
   return (
-    <div className="max-w-full w-full shadow-[0_0_5px_rgba(0,0,0,0.1)] flex flex-col justify-center items-center py-6 gap-y-3 rounded md:rounded-2xl  md:hover:scale-105 transition-transform duration-200 cursor-pointer">
-      <div className="max-w-20 max-h-20 w-full h-full rounded-full overflow-hidden">
-        <img className="w-full" src={picture} alt={name} />
-      </div>
-      <div className="flex flex-col justify-center  items-center gap-2">
-        <h2 className="font-semibold text-xl text-center">{name}</h2>
-        <p className="font-normal text-sm text-[#64748B]">
+    <div className="w-full bg-white border border-slate-200 rounded md:rounded-2xl overflow-hidden cursor-pointer md:hover:scale-105 transition-transform duration-200">
+      {/* top section — tinted */}
+      <div className="bg-slate-50 flex flex-col items-center pt-7 pb-0 px-5">
+        <div className="w-18 h-18 rounded-full overflow-hidden border-[3px] border-white shadow-[0_0_0_1px_#E2E8F0] mb-3">
+          <img
+            className="w-full h-full object-cover"
+            src={picture}
+            alt={name}
+          />
+        </div>
+        <h2 className="font-bold text-xl text-slate-900 tracking-tight text-center mb-0.5">
+          {name}
+        </h2>
+        <p className="text-sm font-medium text-slate-400 mb-4">
           {days_since_contact}d ago
         </p>
-        <div className=" flex flex-row  justify-start items-center gap-1 text-center px-1">
+      </div>
+
+      {/* bottom section — white */}
+      <div className="flex flex-col items-center gap-3 px-4.5 pt-4 pb-4.5">
+        <div className="flex flex-row flex-wrap justify-center items-center gap-1.25">
           {tags.map((tag, index) => (
-            <ProfileTags tag={tag} key={index}></ProfileTags>
+            <ProfileTags tag={tag} key={index} />
           ))}
         </div>
         <p
-          className={`${statusStyles[status]} items-center px-2 py-1 rounded-xl text-xs  border border-gray-200 
-              hover:scale-105 transition-transform duration-200 uppercase w-fit text-center `}
+          className={`${statusStyles[status]} flex items-center gap-1.25 px-3 py-1.25 rounded-lg text-[10px] font-bold tracking-wide w-fit uppercase`}
         >
           {status}
         </p>

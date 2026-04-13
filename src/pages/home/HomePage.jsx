@@ -52,7 +52,7 @@ const HomePage = () => {
               Add a Friend
             </button>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-full w-full">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 max-w-full w-full">
             {friendsDetails.map((friend) => (
               <BannerFriendsDetails
                 key={friend.id}
@@ -65,7 +65,7 @@ const HomePage = () => {
         {/* This is bottom level of banner */}
         <div className="flex flex-col gap-4">
           <h2 className="font-semibold text-2xl">Your Friends</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4  gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4  gap-2 md:gap-4">
             {profilesData.map((profile) => (
               <ProfileCard key={profile.id} profile={profile}></ProfileCard>
             ))}
