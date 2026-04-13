@@ -1,8 +1,11 @@
-import React from "react";
+import React, { use } from "react";
 import BannerFriendsDetails from "../../utility/BannerFriendsDetails";
-
 import { FaPlus } from "react-icons/fa6";
+import ProfileCard from "../../utility/ProfileCard";
+const profilePromise = fetch("/profileData.json").then((res) => res.json());
 const HomePage = () => {
+  const profilesData = use(profilePromise);
+  console.log(profilesData);
   const friendsDetails = [
     {
       id: 1,
@@ -25,8 +28,9 @@ const HomePage = () => {
       title: "Need Attention",
     },
   ];
+
   return (
-    <section className="w-full bg-[#F8FAFC] py-20 ">
+    <section className="w-full bg-[#F8FAFC] py-20 px-4">
       <div className="max-w-6xl w-full mx-auto">
         {/* This is top level of banner */}
         <div className="flex flex-col justify-center items-center gap-y-10 border-b border-b-black/10 pb-12 mb-10">
@@ -59,9 +63,13 @@ const HomePage = () => {
           </div>
         </div>
         {/* This is bottom level of banner */}
-        <div>
+        <div className="flex flex-col gap-4">
           <h2 className="font-semibold text-2xl">Your Friends</h2>
-          {}
+          <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4  gap-4">
+            {profilesData.map((profile) => (
+              <ProfileCard key={profile.id} profile={profile}></ProfileCard>
+            ))}
+          </div>
         </div>
       </div>
     </section>
