@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import useProfilesData from "../../Hooks/useProfilesData";
+import ProfileTags from "../../utility/ProfileTags";
+import ProfileStatus from "../../utility/ProfileStatus";
 
 const ProfileDetails = () => {
   const { id } = useParams();
@@ -10,8 +12,16 @@ const ProfileDetails = () => {
     (profile) => String(profile.id) === id,
   );
 
-  const { name, picture, days_since_contact, status, tags, bio } =
-    matchedProfile;
+  const {
+    name,
+    picture,
+    days_since_contact,
+    status,
+    tags,
+    bio,
+    goal,
+    next_due_date,
+  } = matchedProfile ?? {};
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,20 +36,22 @@ const ProfileDetails = () => {
         <section className="min-h-screen bg-[#F1F5F0] py-8 px-4">
           <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row gap-4">
             {/* ── Left column ── */}
-            <div className="flex flex-col gap-4 w-full lg:w-[260px] lg:flex-shrink-0">
+            <div className="flex flex-col gap-4 w-full lg:w-65 lg:shrink">
               {/* Profile card */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col items-center gap-2.5 text-center">
                 <img
                   src={picture}
                   alt={name}
-                  className="w-20 h-20 rounded-full object-cover border-[3px] border-white shadow-[0_0_0_1px_#E2E8F0]"
+                  className="w-20 h-20 rounded-full object-cover border-[3px] border-blue-600 shadow-[0_0_0_1px_#E2E8F0]"
                 />
                 <h1 className="text-lg font-bold text-slate-900">{name}</h1>
                 <span className="text-[11px] font-bold px-3 py-1 rounded-full">
-                  {status}
+                  <ProfileStatus status={status}></ProfileStatus>
                 </span>
                 <div className="flex flex-wrap justify-center gap-1.5">
-                  {tags}
+                  {tags.map((tag, index) => (
+                    <ProfileTags key={index} tag={tag}></ProfileTags>
+                  ))}
                 </div>
                 <p className="text-sm text-slate-500 italic">{bio}</p>
                 <p className="text-xs text-slate-400"></p>
@@ -73,15 +85,19 @@ const ProfileDetails = () => {
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col items-center justify-center gap-1">
                   <span className="text-4xl font-bold text-teal-900">
-                    {/* {goal} */}
+                    {goal}
                   </span>
                   <span className="text-sm text-slate-400 font-medium">
                     Goal Days
                   </span>
                 </div>
                 <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col items-center justify-center gap-1">
-                  <span className="text-2xl font-bold text-teal-900"></span>
-                  <span className="text-sm text-slate-400 font-medium"></span>
+                  <span className="text-2xl font-bold text-teal-900">
+                    {next_due_date}
+                  </span>
+                  <span className="text-sm text-slate-400 font-medium">
+                    Next Due
+                  </span>
                 </div>
               </div>
 
