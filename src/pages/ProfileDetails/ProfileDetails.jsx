@@ -1,8 +1,14 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useProfilesData from "../../Hooks/useProfilesData";
 import ProfileTags from "../../utility/ProfileTags";
 import ProfileStatus from "../../utility/ProfileStatus";
+import { PiPhoneCallBold } from "react-icons/pi";
+import { LuMessageSquareText, LuVideo } from "react-icons/lu";
+import { RiNotificationSnoozeLine } from "react-icons/ri";
+import { IoArchiveSharp } from "react-icons/io5";
+import { MdDeleteForever } from "react-icons/md";
+import { FaArrowLeft } from "react-icons/fa";
 
 const ProfileDetails = () => {
   const { id } = useParams();
@@ -26,6 +32,8 @@ const ProfileDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
+  const goBack = useNavigate();
   return (
     <>
       {loader ? (
@@ -34,6 +42,18 @@ const ProfileDetails = () => {
         </div>
       ) : (
         <section className="min-h-screen bg-[#F1F5F0] py-8 px-4">
+          <div className="flex flex-row justify-between mx-auto max-w-7xl">
+            <button
+              onClick={() => {
+                goBack(-1);
+              }}
+              className="flex items-center  gap-2 text-black hover:text-[#244D3F] transition-colors duration-200 text-base font-medium max-w-6xl   pb-5"
+            >
+              <FaArrowLeft className="text-base" />
+              Back
+            </button>
+          </div>
+
           <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row gap-4">
             {/* ── Left column ── */}
             <div className="flex flex-col gap-4 w-full lg:w-65 lg:shrink">
@@ -58,14 +78,17 @@ const ProfileDetails = () => {
               </div>
 
               {/* Action buttons */}
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col gap-2">
                 <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <RiNotificationSnoozeLine className="w-5 h-5" />
                   Snooze 2 weeks
                 </button>
                 <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <IoArchiveSharp className="w-5 h-5" />
                   Archive
                 </button>
                 <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-red-500 hover:bg-red-50 transition-colors">
+                  <MdDeleteForever className="w-5 h-5" />
                   Delete
                 </button>
               </div>
@@ -104,19 +127,37 @@ const ProfileDetails = () => {
               {/* Relationship goal */}
               <div className="bg-white border border-slate-200 rounded-2xl p-5">
                 <div className="flex justify-between items-center mb-2.5">
-                  <h2 className="text-[15px] font-bold text-slate-900"></h2>
-                  <button className="text-xs font-semibold text-slate-500 border border-slate-200 px-3.5 py-1.5 rounded-lg hover:bg-slate-50 transition-colors"></button>
+                  <h2 className="text-xl font-medium text-[#244D3F] ">
+                    Relationship Goal
+                  </h2>
+                  <button className="text-xs font-semibold text-slate-500 border border-slate-200 px-3.5 py-1.5 rounded-lg hover:bg-slate-50 transition-colors">
+                    Edit
+                  </button>
                 </div>
-                <p className="text-sm text-slate-500"></p>
+                <p className="text-base text-[#64748B] flex flex-row gap-x-2">
+                  <span className="text-gray-400">Connect every</span>
+                  <span className="text-black font-semibold">{goal} days</span>
+                </p>
               </div>
 
               {/* Quick check-in */}
               <div className="bg-white border border-slate-200 rounded-2xl p-5">
-                <h2 className="text-[15px] font-bold text-slate-900 mb-3"></h2>
+                <h2 className="text-xl font-medium text-[#244D3F] mb-3">
+                  Quick check-in
+                </h2>
                 <div className="grid grid-cols-3 gap-3">
-                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors"></button>
-                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors"></button>
-                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors"></button>
+                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                    <PiPhoneCallBold className="w-7 h-7" />
+                    Call
+                  </button>
+                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                    <LuMessageSquareText className="w-7 h-7" />
+                    Text
+                  </button>
+                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                    <LuVideo className="w-7 h-7" />
+                    Video
+                  </button>
                 </div>
               </div>
             </div>

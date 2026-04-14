@@ -7,6 +7,12 @@ const ProfileCard = ({ profile }) => {
   const { id, name, picture, days_since_contact, status, tags } = profile;
   // text and bg style for status property
 
+  const statusStyles = {
+    "on-track": "bg-green-900 text-green-50",
+    "almost due": "bg-orange-900 text-orange-50",
+    overdue: "bg-red-900 text-red-50",
+  };
+
   return (
     <NavLink
       to={`/profile/${id}`}
@@ -37,8 +43,10 @@ const ProfileCard = ({ profile }) => {
           ))}
         </div>
 
-        <div className=" flex items-center gap-1.25 px-3 py-1.25 rounded-lg text-[10px] font-bold tracking-wide w-fit uppercase">
-          <ProfileStatus status={status}></ProfileStatus>
+        <div
+          className={`${statusStyles[status]} flex items-center gap-1.25 px-3 py-1.25 rounded-lg text-[10px] font-bold tracking-wide w-fit uppercase`}
+        >
+          {status}
         </div>
       </div>
     </NavLink>
