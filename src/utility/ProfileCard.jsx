@@ -37,9 +37,9 @@ const ProfileCard = ({ profile }) => {
           ))}
         </div>
 
-        <p className=" flex items-center gap-1.25 px-3 py-1.25 rounded-lg text-[10px] font-bold tracking-wide w-fit uppercase">
-          {status ? <ProfileStatus status={status}></ProfileStatus> : ""}
-        </p>
+        <div className=" flex items-center gap-1.25 px-3 py-1.25 rounded-lg text-[10px] font-bold tracking-wide w-fit uppercase">
+          <ProfileStatus status={status}></ProfileStatus>
+        </div>
       </div>
     </NavLink>
   );

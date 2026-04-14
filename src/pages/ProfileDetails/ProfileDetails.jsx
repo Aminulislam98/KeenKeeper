@@ -46,7 +46,7 @@ const ProfileDetails = () => {
                 />
                 <h1 className="text-lg font-bold text-slate-900">{name}</h1>
                 <span className="text-[11px] font-bold px-3 py-1 rounded-full">
-                  <ProfileStatus status={status}></ProfileStatus>
+                  <ProfileStatus status={status}>{status}</ProfileStatus>
                 </span>
                 <div className="flex flex-wrap justify-center gap-1.5">
                   {tags.map((tag, index) => (
