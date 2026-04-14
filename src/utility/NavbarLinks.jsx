@@ -1,7 +1,14 @@
 import React from "react";
+import { RiHomeLine, RiTimeLine } from "react-icons/ri";
+import { TfiStatsUp } from "react-icons/tfi";
 import { NavLink } from "react-router";
 
 const NavbarLinks = ({ to, children }) => {
+  const logos = {
+    Home: <RiHomeLine />,
+    Timeline: <RiTimeLine />,
+    Stats: <TfiStatsUp />,
+  };
   return (
     <NavLink
       className={({ isActive }) =>
@@ -9,7 +16,10 @@ const NavbarLinks = ({ to, children }) => {
       }
       to={to}
     >
-      {children}
+      <div className="flex flex-row justify-center items-center gap-1">
+        {logos[children]}
+        {children}
+      </div>
     </NavLink>
   );
 };

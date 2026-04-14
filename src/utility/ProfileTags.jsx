@@ -1,8 +1,6 @@
 import React from "react";
 
 const ProfileTags = ({ tag }) => {
-  console.log(tag);
-
   const tagStyles = {
     college: "bg-violet-900 text-violet-50",
     coding: "bg-violet-900 text-violet-50",

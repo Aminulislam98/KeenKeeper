@@ -2,18 +2,19 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import useProfilesData from "../../Hooks/useProfilesData";
 import ProfileTags from "../../utility/ProfileTags";
-import ProfileStatus from "../../utility/ProfileStatus";
 import { PiPhoneCallBold } from "react-icons/pi";
 import { LuMessageSquareText, LuVideo } from "react-icons/lu";
 import { RiNotificationSnoozeLine } from "react-icons/ri";
 import { IoArchiveSharp } from "react-icons/io5";
 import { MdDeleteForever } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
+import { AllDataContext } from "../../context/AllDataProvider";
+import { useContext } from "react";
+import { toast } from "react-toastify";
 
 const ProfileDetails = () => {
   const { id } = useParams();
   const { profilesData, loader } = useProfilesData();
-  console.log(loader, profilesData);
   const matchedProfile = profilesData?.find(
     (profile) => String(profile.id) === id,
   );
@@ -34,6 +35,80 @@ const ProfileDetails = () => {
   }, [id]);
 
   const goBack = useNavigate();
+  const statusStyles = {
+    "on-track": "bg-green-900 text-green-50",
+    "almost due": "bg-orange-900 text-orange-50",
+    overdue: "bg-red-900 text-red-50",
+  };
+
+  const { callHistory, setCallHistory } = useContext(AllDataContext);
+  const date = new Date();
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  // this is for call
+  const newCall = () => {
+    const newCallDetails = {
+      id: id,
+      title: "Call",
+      name: name,
+      date: formattedDate,
+    };
+    setCallHistory([...callHistory, newCallDetails]);
+    toast.success(`Call with ${name} completed`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+
+  const newText = () => {
+    const newTextDetails = {
+      id: id,
+      title: "Text",
+      name: name,
+      date: formattedDate,
+    };
+    setCallHistory([...callHistory, newTextDetails]);
+    toast.success(`Message sent to ${name}`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
+  const newVideo = () => {
+    const newVideoDetails = {
+      id: id,
+      title: "Video",
+      name: name,
+      date: formattedDate,
+    };
+    setCallHistory([...callHistory, newVideoDetails]);
+    toast.success(`Video call with ${name} completed`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
   return (
     <>
       {loader ? (
@@ -41,7 +116,7 @@ const ProfileDetails = () => {
           <span className="loading loading-spinner loading-xl"></span>
         </div>
       ) : (
-        <section className="min-h-screen bg-[#F1F5F0] py-8 px-4">
+        <section className="min-h-screen bg-[#F8FAFC] py-8 px-4">
           <div className="flex flex-row justify-between mx-auto max-w-7xl">
             <button
               onClick={() => {
@@ -65,8 +140,10 @@ const ProfileDetails = () => {
                   className="w-20 h-20 rounded-full object-cover border-[3px] border-blue-600 shadow-[0_0_0_1px_#E2E8F0]"
                 />
                 <h1 className="text-lg font-bold text-slate-900">{name}</h1>
-                <span className="text-[11px] font-bold px-3 py-1 rounded-full">
-                  <ProfileStatus status={status}>{status}</ProfileStatus>
+                <span
+                  className={`text-[11px] font-bold px-3 py-1 rounded-full ${statusStyles[status]} uppercase`}
+                >
+                  {status}
                 </span>
                 <div className="flex flex-wrap justify-center gap-1.5">
                   {tags.map((tag, index) => (
@@ -84,7 +161,7 @@ const ProfileDetails = () => {
                   Snooze 2 weeks
                 </button>
                 <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
-                  <IoArchiveSharp className="w-5 h-5" />
+                  <IoArchiveSharp className="w-4 h-4" />
                   Archive
                 </button>
                 <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-sm font-semibold text-red-500 hover:bg-red-50 transition-colors">
@@ -146,15 +223,30 @@ const ProfileDetails = () => {
                   Quick check-in
                 </h2>
                 <div className="grid grid-cols-3 gap-3">
-                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <button
+                    onClick={() => {
+                      newCall();
+                    }}
+                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                  >
                     <PiPhoneCallBold className="w-7 h-7" />
                     Call
                   </button>
-                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <button
+                    onClick={() => {
+                      newText();
+                    }}
+                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                  >
                     <LuMessageSquareText className="w-7 h-7" />
                     Text
                   </button>
-                  <button className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <button
+                    onClick={() => {
+                      newVideo();
+                    }}
+                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                  >
                     <LuVideo className="w-7 h-7" />
                     Video
                   </button>

@@ -1,8 +1,10 @@
-import React, { createContext } from "react";
-const AllDataContext = createContext();
+import React, { createContext, useState } from "react";
+export const AllDataContext = createContext();
 
 const AllDataProvider = ({ children }) => {
-  const data = {};
+  const [callHistory, setCallHistory] = useState([]);
+  console.log(callHistory);
+  const data = { callHistory, setCallHistory };
   return (
     <AllDataContext.Provider value={data}>{children}</AllDataContext.Provider>
   );
