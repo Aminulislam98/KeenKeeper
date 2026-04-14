@@ -1,19 +1,34 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { FcMissedCall, FcVideoCall } from "react-icons/fc";
 import { RiMessage2Fill } from "react-icons/ri";
 import { Tab, TabList } from "react-tabs";
 import { AllDataContext } from "../../context/AllDataProvider";
 import TimelineCard from "../../utility/TimelineCard";
-import { useNavigate } from "react-router";
 import { IoCall } from "react-icons/io5";
 import { IoMdText, IoMdVideocam } from "react-icons/io";
 
 const TimeLIne = () => {
   const { callHistory } = useContext(AllDataContext);
+  const [filter, setFilter] = useState("Filter Timeline");
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [callHistory]);
+
+  const filterHistory = useMemo(() => {
+    if (filter === "Text") {
+      return callHistory.filter((text) => text.title === "Text");
+    }
+    if (filter === "Video") {
+      return callHistory.filter((video) => video.title === "Video");
+    }
+    if (filter === "Call") {
+      return callHistory.filter((call) => call.title === "Call");
+    }
+    return callHistory;
+  }, [filter, callHistory]);
+
+  console.log(filterHistory);
   return (
     <section className="min-h-screen bg-[#F8FAFC] py-8 px-4">
       <div className="max-w-6xl w-full mx-auto ">
@@ -26,7 +41,7 @@ const TimeLIne = () => {
               role="button"
               className="flex items-center justify-between px-4 py-2 rounded-md text-[#244D3F] bg-transparent transition-colors duration-200 text-sm font-medium cursor-pointer "
             >
-              Filter timeline
+              {filter}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-3 h-3 ml-1"
@@ -50,6 +65,7 @@ const TimeLIne = () => {
               <li
                 onClick={() => {
                   document.activeElement.blur();
+                  setFilter("Text");
                 }}
               >
                 <a className="text-[#061624] hover:bg-[#E6F1FB] hover:text-[#0E5B9B] rounded-lg flex items-center gap-2">
@@ -60,6 +76,7 @@ const TimeLIne = () => {
               <li
                 onClick={() => {
                   document.activeElement.blur();
+                  setFilter("Call");
                 }}
               >
                 <a className="text-[#061624] hover:bg-[#E6F1FB] hover:text-[#0E5B9B] rounded-lg flex items-center gap-2">
@@ -67,9 +84,11 @@ const TimeLIne = () => {
                   Call
                 </a>
               </li>
+
               <li
                 onClick={() => {
                   document.activeElement.blur();
+                  setFilter("Video");
                 }}
               >
                 <a className="text-[#061624] hover:bg-[#E6F1FB] hover:text-[#0E5B9B] rounded-lg flex items-center gap-2">
@@ -77,12 +96,22 @@ const TimeLIne = () => {
                   Video
                 </a>
               </li>
+              <li
+                onClick={() => {
+                  document.activeElement.blur();
+                  setFilter("See all history");
+                }}
+              >
+                <a className="text-[#061624] hover:bg-[#E6F1FB] hover:text-[#0E5B9B] rounded-lg flex items-center gap-2">
+                  See All History
+                </a>
+              </li>
             </ul>
           </div>
         </div>
         {/* bottom section */}
         <div className="flex flex-col gap-3 mt-4">
-          {callHistory.map((history, index) => (
+          {filterHistory.map((history, index) => (
             <TimelineCard history={history} key={index}></TimelineCard>
           ))}
         </div>
