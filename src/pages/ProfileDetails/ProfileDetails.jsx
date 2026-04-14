@@ -28,6 +28,7 @@ const ProfileDetails = () => {
     bio,
     goal,
     next_due_date,
+    email,
   } = matchedProfile ?? {};
 
   useEffect(() => {
@@ -151,7 +152,9 @@ const ProfileDetails = () => {
                   ))}
                 </div>
                 <p className="text-sm text-slate-500 italic">{bio}</p>
-                <p className="text-xs text-slate-400"></p>
+                <p className="text-xs text-slate-400">
+                  Preferred: email {email}
+                </p>
               </div>
 
               {/* Action buttons */}
@@ -227,7 +230,7 @@ const ProfileDetails = () => {
                     onClick={() => {
                       newCall();
                     }}
-                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-green-500/10 hover:border-green-500/25 hover:text-green-400 transition-colors "
                   >
                     <PiPhoneCallBold className="w-7 h-7" />
                     Call
@@ -236,7 +239,7 @@ const ProfileDetails = () => {
                     onClick={() => {
                       newText();
                     }}
-                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-green-500/10 hover:border-green-500/25 hover:text-green-400 transition-colors "
                   >
                     <LuMessageSquareText className="w-7 h-7" />
                     Text
@@ -245,7 +248,7 @@ const ProfileDetails = () => {
                     onClick={() => {
                       newVideo();
                     }}
-                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-slate-50 transition-colors"
+                    className="flex flex-col items-center justify-center gap-2 border border-slate-200 rounded-2xl py-5 text-base font-semibold text-slate-800 hover:bg-green-500/10 hover:border-green-500/25 hover:text-green-400 transition-colors"
                   >
                     <LuVideo className="w-7 h-7" />
                     Video

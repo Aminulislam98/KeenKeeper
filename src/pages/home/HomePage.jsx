@@ -26,7 +26,7 @@ const HomePage = () => {
     {
       id: 4,
       count: 12,
-      title: "Need Attention",
+      title: "Interactions This Month",
     },
   ];
   const { profilesData, loader } = useProfilesData();
