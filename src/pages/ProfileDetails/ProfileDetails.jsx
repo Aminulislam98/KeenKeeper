@@ -60,6 +60,7 @@ const ProfileDetails = () => {
       date: formattedDate,
     };
     setCallHistory([...callHistory, newCallDetails]);
+
     toast.success(`Call with ${name} completed`, {
       position: "top-right",
       autoClose: 3000,
