@@ -1,6 +1,6 @@
 # KeenKeeper
 
-A personal friendship management app that helps you track and nurture meaningful relationships. Log interactions, monitor contact frequency, and never let important friendships go cold.
+This is a website where you can manage all your contacts—friends, family, colleagues, and more. You can call, text, or video chat with them, and view your interaction history along with charts and insights.
 
 ## Technologies Used
 
@@ -14,7 +14,7 @@ A personal friendship management app that helps you track and nurture meaningful
 ## Key Features
 
 1. **Friend Tracker** — See all your friends in one place with their contact status (On Track / Almost Due / Overdue), tags, and days since last contact
-2. **Quick Check-In** — Log a Call, Text, or Video interaction with one click — instantly saved to your Timeline with date and toast confirmation
+2. **Quick Check-In** — Log a Call, Text, or Video interaction with one click , instantly saved to your Timeline with date and toast confirmation
 3. **Friendship Analytics** — Visual pie chart showing your interaction history broken down by Call, Text, and Video types
 
 ## Live Link
