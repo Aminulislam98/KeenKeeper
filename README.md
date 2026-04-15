@@ -1,4 +1,4 @@
-# KeenKeeper — Keep Your Friendships Alive
+# KeenKeeper
 
 A personal friendship management app that helps you track and nurture meaningful relationships. Log interactions, monitor contact frequency, and never let important friendships go cold.
 
@@ -19,7 +19,7 @@ A personal friendship management app that helps you track and nurture meaningful
 
 ## Live Link
 
-[Add your deployed link here]
+[https://keenkeeperwebsite.netlify.app/]
 
 ## GitHub Repository
 
