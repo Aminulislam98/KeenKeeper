@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Legend, Pie, PieChart, Tooltip } from "recharts";
 import { AllDataContext } from "../../context/AllDataProvider";
 import useProfilesData from "../../Hooks/useProfilesData";
@@ -30,6 +30,9 @@ const StatsPage = () => {
     { name: "Call", value: totalCall, fill: "#7C3AED" },
     { name: "Video", value: totalVideo, fill: "#22C55E" },
   ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [callHistory]);
 
   return (
     <section className="max-w-full w-full bg-[#F8FAFC] min-h-[80vh] flex flex-col justify-center items-center px-4">
