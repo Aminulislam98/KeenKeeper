@@ -43,9 +43,13 @@ const StatsPage = () => {
       ) : (
         <>
           <div className="flex justify-center md:justify-start items-center max-w-6xl w-full mx-auto mb-6">
-            <h1 className="font-semibold text-4xl md:text-start text-center">
-              Friendship Analytics{" "}
-            </h1>
+            {callHistory.length > 0 ? (
+              <h1 className="font-semibold text-4xl md:text-start text-center">
+                Friendship Analytics
+              </h1>
+            ) : (
+              ""
+            )}
           </div>
           <div className="flex justify-center items-center bg-white flex-col pb-8 border border-gray-200 rounded-2xl max-w-6xl w-full mx-auto">
             <h2 className="max-w-full w-full text-start text-xl font-medium p-8">
