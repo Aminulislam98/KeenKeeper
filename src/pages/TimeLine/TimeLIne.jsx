@@ -56,7 +56,7 @@ const TimeLIne = () => {
   }, [filter, filterHistory, callHistory]);
   console.log(filterHistory);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[80vh]">
       {loader ? (
         <div className="max-w-full w-full flex justify-center min-h-screen">
           <span className="loading loading-spinner loading-xl"></span>

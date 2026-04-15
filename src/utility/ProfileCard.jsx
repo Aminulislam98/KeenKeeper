@@ -16,10 +16,10 @@ const ProfileCard = ({ profile }) => {
   return (
     <NavLink
       to={`/profile/${id}`}
-      className="w-full bg-white border border-slate-200 rounded md:rounded-2xl overflow-hidden cursor-pointer md:hover:scale-105 transition-transform duration-200"
+      className="w-full bg-white border border-slate-200 rounded md:rounded-2xl overflow-hidden cursor-pointer md:hover:scale-105 transition-transform duration-200 flex flex-col h-full"
     >
       {/* top section — tinted */}
-      <div className="bg-slate-50 flex flex-col items-center pt-7 pb-0 px-5">
+      <div className="bg-slate-50 flex flex-col items-center pt-7 pb-0 px-5 grow">
         <div className="w-18 h-18 rounded-full overflow-hidden border-[3px] border-white shadow-[0_0_0_1px_#E2E8F0] mb-3">
           <img
             className="w-full h-full object-cover"
@@ -36,7 +36,7 @@ const ProfileCard = ({ profile }) => {
       </div>
 
       {/* bottom section — white */}
-      <div className="flex flex-col items-center gap-3 px-4.5 pt-4 pb-4.5">
+      <div className="flex flex-col items-center gap-3 px-4.5 pt-4 pb-4.5 mt-auto shrink-0">
         <div className="flex flex-row flex-wrap justify-center items-center gap-1.25">
           {tags.map((tag, index) => (
             <ProfileTags tag={tag} key={index} />

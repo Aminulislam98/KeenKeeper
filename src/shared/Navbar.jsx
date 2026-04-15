@@ -28,7 +28,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="">
-          <ul className="flex flex-row justify-center items-center gap-4 text-gray-500">
+          <ul className="flex flex-row justify-center items-center gap-2 md:gap-4 text-gray-500">
             {links.map((link, index) => (
               <NavbarLinks key={index} to={link.path}>
                 {link.title}

@@ -72,7 +72,7 @@ const HomePage = () => {
               <span className="loading loading-spinner loading-xl"></span>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4  gap-2 md:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4  gap-2 md:gap-4 items-stretch">
               {profilesData.map((profile) => (
                 <ProfileCard key={profile.id} profile={profile}></ProfileCard>
               ))}

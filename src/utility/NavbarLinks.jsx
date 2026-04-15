@@ -12,11 +12,11 @@ const NavbarLinks = ({ to, children }) => {
   return (
     <NavLink
       className={({ isActive }) =>
-        isActive ? "py-1 px-4 rounded bg-[#244D3F] text-white" : ""
+        isActive ? "py-1 px-2 md:px-4 rounded bg-[#244D3F] text-white" : ""
       }
       to={to}
     >
-      <div className="flex flex-row justify-center items-center gap-1">
+      <div className="flex flex-row justify-center items-center gap-1 text-sm md:text-base">
         {logos[children]}
         {children}
       </div>
