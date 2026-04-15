@@ -23,4 +23,4 @@ A personal friendship management app that helps you track and nurture meaningful
 
 ## GitHub Repository
 
-[Add your GitHub repo link here]
+[https://github.com/Aminulislam98/KeenKeeper]
