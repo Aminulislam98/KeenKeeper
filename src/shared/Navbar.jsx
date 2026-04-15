@@ -19,10 +19,10 @@ const Navbar = () => {
     },
   ];
   return (
-    <nav className=" bg-base-100 shadow-sm w-full sticky top-0 z-50">
+    <nav className=" bg-base-100 shadow-sm w-full sticky top-0 z-50 px-1">
       <div className="navbar max-w-7xl mx-auto">
         <div className="flex-1">
-          <div className="  flex flex-row justify-start items-center gap-0 text-2xl font-semibold">
+          <div className="  flex flex-row justify-start items-center gap-0 text-xl md:text-2xl font-semibold">
             <span>Keen</span>
             <span className="text-[#244D3F]">Keeper</span>
           </div>
