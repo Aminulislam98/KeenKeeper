@@ -34,6 +34,7 @@ const Footer = () => {
       >
         <div>
           <p>© 2026 KeenKeeper. All rights reserved.</p>
+          {/* This is a comment */}
         </div>
         <div className="flex flex-row gap-1 md:gap-4">
           <p>Privacy Policy</p>
